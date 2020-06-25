@@ -1,0 +1,94 @@
+<!--
+  ~ Copyright (C) 2005 - 2019 TIBCO Software Inc. All rights reserved.
+  ~ http://www.jaspersoft.com.
+  ~
+  ~ Unless you have purchased a commercial license agreement from Jaspersoft,
+  ~ the following license terms apply:
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Affero General Public License as
+  ~ published by the Free Software Foundation, either version 3 of the
+  ~ License, or (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  ~ GNU Affero General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU Affero General Public License
+  ~ along with this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<settings>
+	<offline>false</offline>
+    <localRepository>/root/.m2/repository</localRepository>
+	<profiles>
+		<profile>
+			<id>JasperServerProfile</id>
+			<properties>
+				<repository.database.driver.groupId>org.postgresql</repository.database.driver.groupId>
+				<repository.database.driver.artifactId>postgresql</repository.database.driver.artifactId>
+				<repository.database.driver.version>42.2.5</repository.database.driver.version>
+				<js.quartz.properties>/opt/jasperreports-server-7.5.0/buildomatic/build_conf/default/js.quartz.properties</js.quartz.properties>
+				<js.quartz.base.properties>/opt/jasperreports-server-7.5.0/buildomatic/build_conf/default/js.quartz.base.properties</js.quartz.base.properties>
+				<js.quartz.script>${js-base-path}/scripts/quartz/tables_postgres.sql</js.quartz.script>
+				<js.db.script.path>/opt/jasperreports-server-7.5.0/buildomatic/install_resources/sql/postgresql</js.db.script.path>
+				<metadata.database.generate>false</metadata.database.generate>
+				<suppress.quartz.init>true</suppress.quartz.init>
+				<js-path>${js-path}</js-path>
+				<js-pro-path>${js-pro-path}</js-pro-path>
+				<platform-path>/opt/jasperreports-server-7.5.0/buildomatic/build_conf/default</platform-path>
+				<test.hibernate.cfg>/opt/jasperreports-server-7.5.0/buildomatic/build_conf/default/hibernate.cfg.xml</test.hibernate.cfg>
+				<test.hibernate.jdbc.properties>/opt/jasperreports-server-7.5.0/buildomatic/build_conf/default/js.jdbc.properties</test.hibernate.jdbc.properties>
+				<master.properties>/opt/jasperreports-server-7.5.0/buildomatic/default_master.properties</master.properties>
+		        <!-- workaround src w/o tibco drivers -->
+                <tibco.driver.available>true</tibco.driver.available>
+                <SKIP_TEST_ARG>ignored</SKIP_TEST_ARG>
+                <disable.fafj>false</disable.fafj>
+				<buildArtifactVersionName>fatal: Not a git repository (or any of the parent directories): .git-SNAPSHOT</buildArtifactVersionName>
+				<fafBuildArtifactVersionName>fatal: Not a git repository (or any of the parent directories): .git-SNAPSHOT</fafBuildArtifactVersionName>
+				<cve.suppress.ce.file>${js-path}/buildomatic/suppress-cve-ce.xml</cve.suppress.ce.file>
+				<cve.suppress.pro.file>${js-path}/buildomatic/suppress-cve-pro.xml</cve.suppress.pro.file>
+			</properties>
+		</profile>
+		<profile>
+            <repositories>
+                <repository>
+                    <id>jaspersoft-central</id>
+                    <name>repo</name>
+                    <url>${mvn-mirror}</url>
+                    <snapshots>
+                        <updatePolicy>always</updatePolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>jaspersoft-central</id>
+					<name>repo</name>
+					<url>${mvn-mirror}</url>
+				</pluginRepository>
+			</pluginRepositories>
+			<id>jaspersoft-central</id>
+		</profile>
+	</profiles>
+	<mirrors>
+		<mirror>
+			<mirrorOf>*</mirrorOf>
+			<name>repo</name>
+			<url>${mvn-mirror}</url>
+			<id>repo</id>
+		</mirror>
+	</mirrors>
+	<activeProfiles>
+		<activeProfile>JasperServerProfile</activeProfile>
+		<activeProfile>jaspersoft-central</activeProfile>
+	</activeProfiles>
+	<servers>
+		<server>
+			<id>myserver</id>
+			<username>tomcat</username>
+			<password>tomcat</password>
+		</server>
+	</servers>
+</settings>

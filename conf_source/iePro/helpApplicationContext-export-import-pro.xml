@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (C) 2005 - 2019 TIBCO Software Inc. All rights reserved. Confidentiality & Proprietary.
+  ~ Licensed pursuant to commercial TIBCO End User License Agreement.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd"
+       default-lazy-init="true">
+
+    <bean id="exportImportBasenamesPRO" parent="exportImportBasenamesCE" class="java.util.ArrayList">
+        <constructor-arg index="0" type="java.util.Collection">
+            <list merge="true">
+                <value>bundles.multi-tenancy-export-messages</value>
+                <value>bundles.multi-tenancy-import-messages</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="importCommandMetadataArgNamesPro" parent="importCommandMetadataArgNames" class="java.util.ArrayList">
+        <constructor-arg index="0" type="java.util.Collection">
+            <list merge="true">
+                <value>include-audit-events</value>
+                <value>include-monitoring-events</value>
+                <value>organization</value>
+                <value>merge-organization</value>
+                <value>skip-themes</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="exportCommandMetadataArgNamesPro" parent="exportCommandMetadataArgNames" class="java.util.ArrayList">
+        <constructor-arg index="0" type="java.util.Collection">
+            <list merge="true">
+                <value>include-audit-events</value>
+                <value>include-monitoring-events</value>
+                <value>organization</value>
+                <value>skip-suborganizations</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="exportResourceTypesPro" parent="exportResourceTypes" class="java.util.HashSet">
+        <constructor-arg index="0" type="java.util.Collection">
+            <set merge="true">
+                <value>adhocDataView</value>
+                <value>dashboard</value>
+                <value>domainTopic</value>
+                <value>reportOptions</value>
+                <value>secureMondrianConnection</value>
+                <value>semanticLayerDataSource</value>
+            </set>
+        </constructor-arg>
+    </bean>
+</beans>
